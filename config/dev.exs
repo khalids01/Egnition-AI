@@ -26,7 +26,8 @@ config :egnition, EgnitionWeb.Endpoint,
   secret_key_base: "Z1ggTCqsIbFxEMuqyTblmWdtnc9od2gRcAeptWtq6VziIoWanVHBVvmbI/Fl5y/H",
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:egnition, ~w(--sourcemap=inline --watch)]},
-    tailwind: {Tailwind, :install_and_run, [:egnition, ~w(--watch)]}
+    tailwind: {Tailwind, :install_and_run, [:egnition, ~w(--watch)]},
+    # node: ["node_modules/esbuild/bin/esbuild", "--watch", cd: Path.expand("../assets", __DIR__)]
   ]
 
 # ## SSL Support

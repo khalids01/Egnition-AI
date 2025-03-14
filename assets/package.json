@@ -1,9 +1,22 @@
 {
+  "scripts": {
+    "deploy": "cd .. && mix assets.deploy && rm -f _build/esbuild*"
+  },
   "dependencies": {
+    "@inertiajs/core": "^2.0.5",
+    "@inertiajs/react": "^2.0.5",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.479.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "shadcn": "^2.4.0-canary.14",
     "tailwind-merge": "^3.0.2",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "phoenix": "file:../deps/phoenix",
+    "phoenix_html": "file:../deps/phoenix_html"
+  },
+  "devDependencies": {
+    "@types/react-dom": "^19.0.4"
   }
 }

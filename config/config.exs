@@ -33,10 +33,16 @@ config :egnition, Egnition.Mailer, adapter: Swoosh.Adapters.Local
 
 # Configure esbuild (the version is required)
 config :esbuild,
-  version: "0.17.11",
+  version: "0.21.4",
   egnition: [
-    args:
-      ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
+    args: ~w(
+        src/app.tsx
+      --bundle
+      --target=es2017
+      --outdir=../priv/static/assets
+      --external:/fonts/*
+      --external:/images/*
+        ),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
@@ -47,7 +53,7 @@ config :tailwind,
   egnition: [
     args: ~w(
       --config=tailwind.config.js
-      --input=css/app.css
+      --input=src/css/app.css
       --output=../priv/static/assets/app.css
     ),
     cd: Path.expand("../assets", __DIR__)
@@ -67,7 +73,7 @@ config :inertia,
   # The Phoenix Endpoint module for your application. This is used for building
   # asset URLs to compute a unique version hash to track when something has
   # changed (and a reload is required on the frontend).
-  endpoint: MyAppWeb.Endpoint,
+  endpoint: EgnitionWeb.Endpoint,
 
   # An optional list of static file paths to track for changes. You'll generally
   # want to include any JavaScript assets that may require a page refresh when

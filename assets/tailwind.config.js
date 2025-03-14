@@ -6,7 +6,10 @@ const fs = require("fs");
 const path = require("path");
 
 module.exports = {
+  darkMode: "class",
   content: [
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./js/**/*.js",
     "../lib/egnition_web.ex",
     "../lib/egnition_web/**/*.*ex",
