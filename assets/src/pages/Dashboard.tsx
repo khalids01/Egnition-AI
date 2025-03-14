@@ -1,17 +1,19 @@
 // assets/js/pages/Dashboard.jsx
+import React from "react";
 
-import React from 'react'
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
+import { Button } from "@/components/ui/button";
 
 interface Props {
-  title: string
-  message: string
+  title: string;
+  message: string;
 }
 
 export default function Dashboard({ title, message }: Props) {
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
-      <h1 className="text-3xl font-bold mb-4">{title}</h1>
-      <p className="text-lg">{message}</p>
+    <div className="bg-background">
+     <Button >Click</Button> 
     </div>
-  )
+  );
 }

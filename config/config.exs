@@ -49,11 +49,11 @@ config :esbuild,
 
 # Configure tailwind (the version is required)
 config :tailwind,
-  version: "3.4.3",
+  version: "4.0.0",
   egnition: [
     args: ~w(
-      --config=tailwind.config.js
-      --input=src/css/app.css
+      --config=../assets/tailwind.config.js
+      --input=src/styles/global.css
       --output=../priv/static/assets/app.css
     ),
     cd: Path.expand("../assets", __DIR__)
