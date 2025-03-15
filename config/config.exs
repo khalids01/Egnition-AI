@@ -33,16 +33,21 @@ config :egnition, Egnition.Mailer, adapter: Swoosh.Adapters.Local
 
 # Configure esbuild (the version is required)
 config :esbuild,
-  version: "0.21.4",
+  version: "0.21.5",
   egnition: [
     args: ~w(
         src/app.tsx
       --bundle
-      --target=es2017
+      --target=es2020
       --outdir=../priv/static/assets
       --external:/fonts/*
       --external:/images/*
         ),
+    cd: Path.expand("../assets", __DIR__),
+    env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
+  ],
+  ssr: [
+    args: ~w(src/ssr.tsx --bundle --platform=node --outdir=../priv --format=cjs),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
@@ -96,7 +101,7 @@ config :inertia,
 
   # Enable server-side rendering for page responses (requires some additional setup,
   # see instructions below). Defaults to `false`.
-  ssr: false,
+  ssr: true,
 
   # Whether to raise an exception when server-side rendering fails (only applies
   # when SSR is enabled). Defaults to `true`.

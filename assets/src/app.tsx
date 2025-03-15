@@ -2,7 +2,7 @@ import "phoenix_html";
 
 import React from "react";
 import { createInertiaApp } from "@inertiajs/react";
-import { createRoot } from "react-dom/client";
+import { hydrateRoot } from "react-dom/client";
 import axios from "axios";
 
 axios.defaults.xsrfHeaderName = "x-csrf-token";
@@ -13,6 +13,6 @@ createInertiaApp({
     return pages;
   },
   setup({ el, App, props }) {
-    createRoot(el).render(<App {...props} />);
+    hydrateRoot(el, <App {...props} />);
   },
 });

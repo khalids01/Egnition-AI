@@ -14,6 +14,11 @@ defmodule Egnition.Application do
       {Phoenix.PubSub, name: Egnition.PubSub},
       # Start the Finch HTTP client for sending emails
       {Finch, name: Egnition.Finch},
+
+      # Start the SSR process pool
+      # must specify a `path` option to locate the directory where the `ssr.js` file lives.
+      {Inertia.SSR, path: Path.join([Application.app_dir(:egnition), "priv"])},
+
       # Start a worker by calling: Egnition.Worker.start_link(arg)
       # {Egnition.Worker, arg},
       # Start to serve requests, typically the last entry

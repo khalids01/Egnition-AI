@@ -12,8 +12,8 @@ interface Props {
 
 export default function Dashboard({ title, message }: Props) {
   return (
-    <div className="bg-background">
-     <Button >Click</Button> 
+    <div className="bg-secondary m-16">
+     <Button >{title}</Button> 
     </div>
   );
 }

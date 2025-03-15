@@ -10,8 +10,6 @@
     <script defer phx-track-static type="module" src={~p"/assets/app.js"}></script>
   </head>
   <body class="h-full ">
-    <div id="app" data-page={Jason.encode!(@page)}>
-      {@inner_content}
-    </div>
+   <%= @inner_content %>
   </body>
 </html>
