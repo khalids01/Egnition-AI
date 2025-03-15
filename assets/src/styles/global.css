@@ -4,6 +4,7 @@
 
 @import "tailwindcss";
 
+@plugin 'tailwindcss-animate';
 
 /* This file is for your main application CSS */
 @custom-variant dark (&:is(.dark *));
