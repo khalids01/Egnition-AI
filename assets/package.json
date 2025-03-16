@@ -42,7 +42,8 @@
     "react-dom": "^19.0.0",
     "shadcn": "^2.4.0-canary.14",
     "tailwind-merge": "^3.0.2",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "universal-cookie": "^8.0.0"
   },
   "devDependencies": {
     "@types/react": "^19.0.10",
