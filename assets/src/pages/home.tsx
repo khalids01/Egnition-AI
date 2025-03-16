@@ -1,11 +1,14 @@
 import React from "react";
-import { Header, Hero } from "@/features/home";
+import { Header, Hero, Services, Plans , Footer} from "@/features/home";
 
 const Home = () => {
   return (
     <main>
       <Header />
       <Hero />
+      <Services />
+      <Plans/>
+      <Footer/> 
     </main>
   );
 };
