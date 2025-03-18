@@ -4,6 +4,7 @@ import React from "react";
 import { createInertiaApp } from "@inertiajs/react";
 import { hydrateRoot } from "react-dom/client";
 import axios from "axios";
+import { Toaster } from "./components/ui/toast";
 
 axios.defaults.xsrfHeaderName = "x-csrf-token";
 
@@ -13,6 +14,12 @@ createInertiaApp({
     return pages;
   },
   setup({ el, App, props }) {
-    hydrateRoot(el, <App {...props} />);
+    hydrateRoot(
+      el,
+      <>
+        <App {...props} />
+        <Toaster />
+      </>
+    );
   },
 });
