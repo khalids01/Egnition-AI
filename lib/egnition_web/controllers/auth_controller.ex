@@ -55,8 +55,14 @@ defmodule EgnitionWeb.AuthController do
 
       {:error, message} ->
         conn
-        |> put_flash(:error, message)
-        |> redirect(to: ~p"/login")
+        |> put_status(422)
+        |> Helpers.assign_flash(:error, message)
+        |> render_inertia("auth/login.tsx", %{
+          errors: %{
+            email: ["Invalid email or password"],
+            password: ["Invalid email or password"]
+          }
+        })
     end
   end
 

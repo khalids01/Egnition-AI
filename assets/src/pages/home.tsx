@@ -7,9 +7,8 @@ const Home = () => {
       <Header />
       <Hero />
       <Services />
-      {/*
       <Plans />
-      <Footer /> */}
+      <Footer />
     </main>
   );
 };

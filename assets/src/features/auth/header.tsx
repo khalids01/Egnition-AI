@@ -15,6 +15,13 @@ export function Header() {
         </Link>
         <nav className="hidden md:flex items-center gap-6">
           <Link
+            href={endpoints.pages.home}
+            className="text-sm font-medium hover:underline underline-offset-4"
+            prefetch={false}
+          >
+            Home
+          </Link>
+          <Link
             href="#"
             className="text-sm font-medium hover:underline underline-offset-4"
             prefetch={false}
@@ -45,17 +52,6 @@ export function Header() {
         </nav>
         <div className="flex items-center gap-4">
           <ThemeSwitch />
-          <Button asChild>
-            <Link href={endpoints.pages.login} prefetch={false}>
-              Sign In
-            </Link>
-          </Button>
-
-          {/* <Button asChild variant="accent">
-            <Link href="#"  prefetch={false}>
-              Sign Up
-            </Link>
-          </Button> */}
         </div>
         <Sheet>
           <SheetTrigger asChild>
@@ -94,22 +90,6 @@ export function Header() {
               >
                 Contact
               </Link>
-              <div className="flex items-center gap-2">
-                <Link
-                  href="#"
-                  className="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                  prefetch={false}
-                >
-                  Sign In
-                </Link>
-                <Link
-                  href="#"
-                  className="inline-flex h-9 items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                  prefetch={false}
-                >
-                  Sign Up
-                </Link>
-              </div>
             </div>
           </SheetContent>
         </Sheet>

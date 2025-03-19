@@ -18,7 +18,7 @@ createInertiaApp({
       el,
       <>
         <App {...props} />
-        {/* <Toaster /> */}
+        <Toaster />
       </>
     );
   },
