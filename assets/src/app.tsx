@@ -9,8 +9,8 @@ import { Toaster } from "./components/ui/toast";
 axios.defaults.xsrfHeaderName = "x-csrf-token";
 
 createInertiaApp({
-  resolve: async (name) => {
-    const pages = await import(`./pages/${name}.tsx`);
+  resolve: async (path) => {
+    const pages = await import(`./pages/${path}`);
     return pages;
   },
   setup({ el, App, props }) {
@@ -18,7 +18,7 @@ createInertiaApp({
       el,
       <>
         <App {...props} />
-        <Toaster />
+        {/* <Toaster /> */}
       </>
     );
   },

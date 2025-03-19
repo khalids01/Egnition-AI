@@ -9,6 +9,7 @@ import {
   IconTableColumn,
 } from "@tabler/icons-react";
 import { motion } from "motion/react";
+import { Hydrate } from "@/components/hydrate";
 
 export function Services() {
   return (
@@ -23,7 +24,9 @@ export function Services() {
             your business to the next level.
           </p>
         </div>
-        <ServicesBentoGrid />
+        <Hydrate>
+          <ServicesBentoGrid />
+        </Hydrate>
       </div>
     </section>
   );
@@ -290,7 +293,7 @@ const SkeletonFive = () => {
         className="flex flex-row rounded-2xl border border-neutral-100 dark:border-white/[0.2] p-2  items-start space-x-2 bg-white dark:bg-black"
       >
         <img
-          src="/images/avatar.png"
+          src="/avatar.png"
           alt="avatar"
           height="100"
           width="100"

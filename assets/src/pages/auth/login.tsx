@@ -29,7 +29,7 @@ export default function LoginPreview() {
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    post("/users/log_in");
+    post("/login");
   }
 
   return (
@@ -42,6 +42,8 @@ export default function LoginPreview() {
           </CardDescription>
         </CardHeader>
         <CardContent>
+          {/* <Form {...{ register, handleSubmit, errors }}>
+
           <form onSubmit={onSubmit} className="space-y-8">
             <div className="grid gap-4">
               <FormItem className="grid gap-2">
@@ -107,9 +109,10 @@ export default function LoginPreview() {
               </Button>
             </div>
           </form>
+          </Form> */}
           <div className="mt-4 text-center text-sm">
             Don&apos;t have an account?{" "}
-            <Link href="/users/register" className="underline">
+            <Link href="/register" className="underline">
               Sign up
             </Link>
           </div>

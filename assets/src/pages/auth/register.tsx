@@ -30,7 +30,7 @@ export default function RegisterPreview() {
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    post("/users/register");
+    post("/register");
   }
 
   return (
@@ -143,7 +143,7 @@ export default function RegisterPreview() {
           </form>
           <div className="mt-4 text-center text-sm">
             Already have an account?{" "}
-            <Link href="/users/log_in" className="underline">
+            <Link href="/login" className="underline">
               Login
             </Link>
           </div>

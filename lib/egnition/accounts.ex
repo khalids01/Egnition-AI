@@ -26,6 +26,17 @@ defmodule Egnition.Accounts do
     Repo.get_by(User, email: email)
   end
 
+  def validate_login_data(email, password) do
+    found_user = get_user_by_email(email)
+
+    with %User{} = validated_user <- found_user,
+         true <- Bcrypt.verify_pass(password, validated_user.hashed_password) do
+      {:ok, user: validated_user}
+    else
+      _ -> {:error, "Invalid email or password"}
+    end
+  end
+
   @doc """
   Gets a user by email and password.
 

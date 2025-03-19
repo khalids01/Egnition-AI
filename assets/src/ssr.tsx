@@ -6,8 +6,8 @@ export function render(page: any) {
   return createInertiaApp({
     page,
     render: ReactDOMServer.renderToString,
-    resolve: async (name) => {
-      return await import(`./pages/${name}.tsx`);
+    resolve: async (path) => {
+      return await import(`./pages/${path}`);
     },
     setup: ({ App, props }) => <App {...props} />,
   });

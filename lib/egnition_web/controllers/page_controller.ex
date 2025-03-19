@@ -4,6 +4,6 @@ defmodule EgnitionWeb.PageController do
   def home(conn, _params) do
     conn
     |> put_layout(false)
-    |> render_inertia("home")
+    |> render_inertia("home.tsx")
   end
 end
