@@ -59,6 +59,7 @@ defmodule EgnitionWeb.Router do
 
   scope "/", EgnitionWeb do
     pipe_through [:browser, :ensure_authenticated]
+    get "/profile", PageController, :profile
     get "/me", AuthController, :fetch_current_user
     delete "/logout", AuthController, :logout
   end

@@ -1,10 +1,8 @@
-import React from 'react'
+import { CurrentUser } from "@/types";
+import React from "react";
 
-function User(props: any) {
-  console.log("User", props?.current_user);
-  return (
-    <div>User</div>
-  )
+function User({ current_user }: { current_user: CurrentUser }) {
+  return <div>{current_user?.name}</div>;
 }
 
-export default User
+export default User;
