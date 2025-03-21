@@ -69,12 +69,6 @@ export default function RegisterPreview() {
   });
 
   function onSubmit(values: RegisterFormValues) {
-    setData("name", values.name);
-    setData("email", values.email);
-    setData("phone", values.phone);
-    setData("password", values.password);
-    setData("password_confirmation", values.password_confirmation);
-
     post(endpoints.api.register);
   }
 
@@ -113,15 +107,19 @@ export default function RegisterPreview() {
                   <FormField
                     control={form.control}
                     name="email"
-                    render={({ field }) => (
+                    render={({ field: { onChange, ...field } }) => (
                       <FormItem>
                         <FormLabel>Email</FormLabel>
                         <FormControl>
                           <Input
                             type="email"
-                            placeholder="johndoe@mail.com"
+                            placeholder="khalid@mail.com"
                             autoComplete="email"
                             {...field}
+                            onChange={(e) => {
+                              onChange(e);
+                              setData("email", e.target.value);
+                            }}
                           />
                         </FormControl>
                         <FormMessage>{inertiaErrors.email}</FormMessage>
@@ -131,26 +129,8 @@ export default function RegisterPreview() {
 
                   <FormField
                     control={form.control}
-                    name="phone"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Phone</FormLabel>
-                        <FormControl>
-                          <Input
-                            type="tel"
-                            placeholder="1234567890"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage>{inertiaErrors.phone}</FormMessage>
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
                     name="password"
-                    render={({ field }) => (
+                    render={({ field:{onChange, ...field} }) => (
                       <FormItem>
                         <FormLabel>Password</FormLabel>
                         <FormControl>
@@ -158,6 +138,10 @@ export default function RegisterPreview() {
                             placeholder="******"
                             autoComplete="new-password"
                             {...field}
+                            onChange={(e) => {
+                              onChange(e);
+                              setData("password", e.target.value);
+                            }}
                           />
                         </FormControl>
                         <FormMessage>{inertiaErrors.password}</FormMessage>

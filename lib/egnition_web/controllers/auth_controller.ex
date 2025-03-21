@@ -77,9 +77,14 @@ defmodule EgnitionWeb.AuthController do
   end
 
   def fetch_current_user(conn, _opts) do
-    {user_token, conn} = ensure_user_token(conn)
-    user = user_token && Accounts.get_user_by_session_token(user_token)
-    assign(conn, :current_user, user)
+    case ensure_user_token(conn) do
+      {nil, conn} ->
+        conn
+      {token, conn} ->
+        user = token && Accounts.get_user_by_session_token(token)
+        assign(conn, :current_user, user)
+        assign_prop(conn, :current_user, user)
+    end
   end
 
   defp renew_session(conn) do
