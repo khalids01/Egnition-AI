@@ -6,7 +6,7 @@ defmodule Egnition.Accounts do
   import Ecto.Query, warn: false
   alias Egnition.Repo
 
-  alias Egnition.Accounts.{User, UserToken, UserNotifier}
+  alias Egnition.Accounts.{User, UserToken, UserNotifier, Subscription}
 
   ## Database getters
 
@@ -360,5 +360,30 @@ defmodule Egnition.Accounts do
       {:ok, %{user: user}} -> {:ok, user}
       {:error, :user, changeset, _} -> {:error, changeset}
     end
+  end
+
+  def create_subscription(user, attrs) do
+    %Subscription{}
+    |> Subscription.changeset(Map.put(attrs, "user_id", user.id))
+    |> Repo.insert()
+  end
+
+  def get_user_subscription(user) do
+    Repo.get_by(Subscription, user_id: user.id)
+  end
+
+  def update_subscription(%Subscription{} = subscription, attrs) do
+    subscription
+    |> Subscription.changeset(attrs)
+    |> Repo.update()
+  end
+
+  def cancel_subscription(%Subscription{} = subscription) do
+    now = DateTime.utc_now()
+
+    update_subscription(subscription, %{
+      status: :canceled,
+      cancel_at: now
+    })
   end
 end

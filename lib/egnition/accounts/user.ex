@@ -11,6 +11,9 @@ defmodule Egnition.Accounts.User do
     field :hashed_password, :string, redact: true
     field :current_password, :string, virtual: true, redact: true
     field :confirmed_at, :utc_datetime
+    has_one :subscription, Egnition.Accounts.Subscription
+    has_many :automations, Egnition.Automations.Automation
+    has_many :integrations, Egnition.Integrations.Integration
 
     timestamps(type: :utc_datetime)
   end
