@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useForm as useInertiaForm } from "@inertiajs/react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,14 +24,14 @@ import { PasswordInput } from "@/components/ui/password-input";
 import { AuthLayout } from "@/layouts/auth";
 import { endpoints } from "@/constants/endpoints";
 import { Flash } from "@/components/flash";
+import { toast } from "sonner";
 
 // Define the form schema
 const registerSchema = z
   .object({
     name: z.string().min(2, "Name must be at least 2 characters"),
     email: z.string().email("Invalid email address"),
-    phone: z.string().min(10, "Phone number must be at least 10 characters"),
-    password: z.string().min(8, "Password must be at least 8 characters"),
+    password: z.string().min(6, "Password must be at least 6 characters"),
     password_confirmation: z.string(),
   })
   .refine((data) => data.password === data.password_confirmation, {
@@ -51,9 +51,7 @@ export default function RegisterPreview() {
   } = useInertiaForm({
     name: "",
     email: "",
-    phone: "",
     password: "",
-    password_confirmation: "",
   });
 
   // Shadcn/React Hook Form handling
@@ -62,7 +60,6 @@ export default function RegisterPreview() {
     defaultValues: {
       name: "",
       email: "",
-      phone: "",
       password: "",
       password_confirmation: "",
     },
@@ -72,10 +69,23 @@ export default function RegisterPreview() {
     post(endpoints.api.register);
   }
 
+  console.log(inertiaErrors);
+
+  useEffect(() => {
+    if (!inertiaErrors && Object.keys(inertiaErrors).length > 0) {
+      Object.keys(inertiaErrors)?.forEach((element) => {
+        toast(inertiaErrors[element]);
+        form.setError(element as "name" | "email" | "password", {
+          message: inertiaErrors[element],
+        });
+      });
+    }
+  }, [inertiaErrors]);
+
   return (
     <AuthLayout>
       <Flash />
-      <div className="flex min-h-[60vh] h-full w-full items-center justify-center px-4">
+      <div className="flex min-h-[60vh] py-16 h-full w-full items-center justify-center px-4">
         <Card className="mx-auto max-w-md w-full">
           <CardHeader>
             <CardTitle className="text-2xl">Register</CardTitle>
@@ -93,11 +103,18 @@ export default function RegisterPreview() {
                   <FormField
                     control={form.control}
                     name="name"
-                    render={({ field }) => (
+                    render={({ field: { onChange, ...field } }) => (
                       <FormItem>
                         <FormLabel>Full Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="John Doe" {...field} />
+                          <Input
+                            placeholder="John Doe"
+                            {...field}
+                            onChange={(e) => {
+                              onChange(e);
+                              setData("name", e.target.value);
+                            }}
+                          />
                         </FormControl>
                         <FormMessage>{inertiaErrors.name}</FormMessage>
                       </FormItem>
@@ -130,7 +147,7 @@ export default function RegisterPreview() {
                   <FormField
                     control={form.control}
                     name="password"
-                    render={({ field:{onChange, ...field} }) => (
+                    render={({ field: { onChange, ...field } }) => (
                       <FormItem>
                         <FormLabel>Password</FormLabel>
                         <FormControl>
@@ -162,9 +179,6 @@ export default function RegisterPreview() {
                             {...field}
                           />
                         </FormControl>
-                        <FormMessage>
-                          {inertiaErrors.password_confirmation}
-                        </FormMessage>
                       </FormItem>
                     )}
                   />

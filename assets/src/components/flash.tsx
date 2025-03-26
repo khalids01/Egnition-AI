@@ -8,17 +8,19 @@ export function Flash() {
 
   if (!flash) return null;
 
-  if (flash?.error) {
-    toast.error(flash?.error, {
-      icon: <IconExclamationCircle />,
-    });
-  }
+  React.useEffect(() => {
+    if (flash?.error) {
+      toast.error(flash?.error, {
+        icon: <IconExclamationCircle />,
+      });
+    }
 
-  if (flash?.success) {
-    toast.success(flash?.success, {
-      icon: <IconCheck />,
-    });
-  }
+    if (flash?.success) {
+      toast.success(flash?.success, {
+        icon: <IconCheck />,
+      });
+    }
+  }, [flash]);
 
   return <></>;
 }

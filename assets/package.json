@@ -1,6 +1,9 @@
 {
   "scripts": {
-    "deploy": "cd .. && mix assets.deploy && rm -f _build/esbuild*"
+    "deploy": "cd .. && mix assets.deploy && rm -f _build/esbuild*",
+    "build": "tsc && vite build",
+    "dev": "NODE_ENV=development vite",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.3",
