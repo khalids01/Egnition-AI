@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/ui/password-input";
-import * as React from "react";
+import React from "react";
 
 export default function ResetPasswordPreview() {
   const { data, setData, post, processing, errors } = useForm({

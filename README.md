@@ -57,3 +57,26 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
   * Official website: https://www.phoenixframework.org/
   * Inertia.js: https://inertiajs.com/
+
+# clean up commands
+# Stop the Phoenix server (if running)
+# Press Ctrl+C twice
+
+# Clean up build artifacts
+mix clean
+rm -rf _build
+rm -rf deps
+rm -rf priv/static/assets
+rm -rf assets/node_modules
+rm -rf priv/ssr.js
+
+# Get dependencies and setup
+mix deps.get
+cd assets && npm install && cd ..
+mix assets.setup
+
+# Build assets and start server
+mix assets.build
+
+# One-liner (same effect as above)
+mix do clean, deps.get && cd assets && npm install && cd .. && mix assets.setup && mix assets.build && mix phx.server

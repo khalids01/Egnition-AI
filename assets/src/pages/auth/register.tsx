@@ -54,7 +54,6 @@ export default function RegisterPreview() {
     password: "",
   });
 
-  // Shadcn/React Hook Form handling
   const form = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
@@ -68,8 +67,6 @@ export default function RegisterPreview() {
   function onSubmit(values: RegisterFormValues) {
     post(endpoints.api.register);
   }
-
-  console.log(inertiaErrors);
 
   useEffect(() => {
     if (!inertiaErrors && Object.keys(inertiaErrors).length > 0) {

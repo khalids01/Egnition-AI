@@ -50,11 +50,9 @@ config :esbuild,
     args: ~w(
       src/ssr.tsx
       --bundle
-      --target=es2020
       --platform=node
       --outdir=../priv
       --format=cjs
-      --splitting
       ),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}

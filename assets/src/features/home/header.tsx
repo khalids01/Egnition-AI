@@ -1,11 +1,30 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { ThemeSwitch } from "@/components/ThemeSwitch";
 import { endpoints } from "@/constants/endpoints";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { IconUserCircle } from "@tabler/icons-react";
+import { CurrentUser } from "@/types";
 
 export function Header() {
+  const { props } = usePage();
+  const user = props?.current_user || null;
+
   return (
     <header className="text-primary bg-background border-b border-muted">
       <div className="container mx-auto flex items-center justify-between h-16 px-4 md:px-6">
@@ -45,11 +64,16 @@ export function Header() {
         </nav>
         <div className="flex items-center gap-4">
           <ThemeSwitch />
-          <Button asChild>
-            <Link href={endpoints.pages.login} prefetch={false}>
-              Sign In
-            </Link>
-          </Button>
+
+          {user ? (
+            <UserDropdown />
+          ) : (
+            <Button asChild>
+              <Link href={endpoints.pages.login} prefetch={false}>
+                Sign In
+              </Link>
+            </Button>
+          )}
 
           {/* <Button asChild variant="accent">
             <Link href="#"  prefetch={false}>
@@ -57,64 +81,110 @@ export function Header() {
             </Link>
           </Button> */}
         </div>
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="outline" size="icon" className="md:hidden">
-              <MenuIcon className="h-6 w-6" />
-              <span className="sr-only">Toggle navigation menu</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left">
-            <div className="grid gap-4 p-4">
-              <Link
-                href="#"
-                className="flex items-center gap-2 text-sm font-medium"
-                prefetch={false}
-              >
-                Pricing
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-2 text-sm font-medium"
-                prefetch={false}
-              >
-                Features
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-2 text-sm font-medium"
-                prefetch={false}
-              >
-                About
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-2 text-sm font-medium"
-                prefetch={false}
-              >
-                Contact
-              </Link>
-              <div className="flex items-center gap-2">
-                <Link
-                  href="#"
-                  className="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                  prefetch={false}
-                >
-                  Sign In
-                </Link>
-                <Link
-                  href="#"
-                  className="inline-flex h-9 items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                  prefetch={false}
-                >
-                  Sign Up
-                </Link>
-              </div>
-            </div>
-          </SheetContent>
-        </Sheet>
+        <MobileNav />
       </div>
     </header>
+  );
+}
+
+function UserDropdown() {
+  const { props } = usePage();
+  const user = (props?.current_user as CurrentUser) || null;
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger>
+          <IconUserCircle />
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuLabel>My Account {user?.name}</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuItem>
+            Profile
+            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            Billing
+            <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            Settings
+            <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            Keyboard shortcuts
+            <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>
+          Log out
+          <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
+
+function MobileNav() {
+  return (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="outline" size="icon" className="md:hidden">
+          <MenuIcon className="h-6 w-6" />
+          <span className="sr-only">Toggle navigation menu</span>
+        </Button>
+      </SheetTrigger>
+      <SheetContent side="left">
+        <div className="grid gap-4 p-4">
+          <Link
+            href="#"
+            className="flex items-center gap-2 text-sm font-medium"
+            prefetch={false}
+          >
+            Pricing
+          </Link>
+          <Link
+            href="#"
+            className="flex items-center gap-2 text-sm font-medium"
+            prefetch={false}
+          >
+            Features
+          </Link>
+          <Link
+            href="#"
+            className="flex items-center gap-2 text-sm font-medium"
+            prefetch={false}
+          >
+            About
+          </Link>
+          <Link
+            href="#"
+            className="flex items-center gap-2 text-sm font-medium"
+            prefetch={false}
+          >
+            Contact
+          </Link>
+          <div className="flex items-center gap-2">
+            <Link
+              href="#"
+              className="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+              prefetch={false}
+            >
+              Sign In
+            </Link>
+            <Link
+              href="#"
+              className="inline-flex h-9 items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+              prefetch={false}
+            >
+              Sign Up
+            </Link>
+          </div>
+        </div>
+      </SheetContent>
+    </Sheet>
   );
 }
 
