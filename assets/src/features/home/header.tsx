@@ -93,11 +93,13 @@ function UserDropdown() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
-          <IconUserCircle />
+      <DropdownMenuTrigger asChild>
+<Button variant="outline" className="h-10 w-10">
+<IconUserCircle />
+</Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel>My Account {user?.name}</DropdownMenuLabel>
+        <DropdownMenuLabel>{user?.name}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
