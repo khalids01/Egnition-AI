@@ -66,7 +66,7 @@ defmodule EgnitionWeb.AuthController do
     end
   end
 
-  def log_out_user(conn) do
+  def logout(conn, _params) do
     user_token = get_session(conn, :user_token)
     user_token && Accounts.delete_user_session_token(user_token)
 

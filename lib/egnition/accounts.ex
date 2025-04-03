@@ -31,7 +31,7 @@ defmodule Egnition.Accounts do
 
     with %User{} = validated_user <- found_user,
          true <- Bcrypt.verify_pass(password, validated_user.hashed_password) do
-      {:ok, user: validated_user}
+      {:ok, validated_user}
     else
       _ -> {:error, "Invalid email or password"}
     end

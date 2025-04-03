@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { Link, usePage } from "@inertiajs/react";
+import { Link, usePage, useForm } from "@inertiajs/react";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { ThemeSwitch } from "@/components/ThemeSwitch";
 import { endpoints } from "@/constants/endpoints";
@@ -18,7 +18,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { IconUserCircle } from "@tabler/icons-react";
+import { IconLogout, IconUserCircle } from "@tabler/icons-react";
 import { CurrentUser } from "@/types";
 
 export function Header() {
@@ -91,38 +91,38 @@ function UserDropdown() {
   const { props } = usePage();
   const user = (props?.current_user as CurrentUser) || null;
 
+  const { delete: logout } = useForm();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-<Button variant="outline" className="h-10 w-10">
-<IconUserCircle />
-</Button>
+        <Button
+          variant="outline"
+          className="h-10 w-10 rounded-full bg-secondary p-2"
+        >
+          <IconUserCircle size={24} />
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         <DropdownMenuLabel>{user?.name}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
-            Profile
-            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            Billing
-            <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
-          </DropdownMenuItem>
+          <DropdownMenuItem>Profile</DropdownMenuItem>
           <DropdownMenuItem>
             Settings
             <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            Keyboard shortcuts
-            <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
-          </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() => {
+            logout(endpoints.api.logout);
+          }}
+        >
           Log out
-          <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+          <DropdownMenuShortcut>
+            <IconLogout />
+          </DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
