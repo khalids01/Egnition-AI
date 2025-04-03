@@ -66,5 +66,8 @@ defmodule EgnitionWeb.Router do
     get "/profile", PageController, :profile
     get "/me", AuthController, :fetch_current_user
     delete "/logout", AuthController, :logout
+
+    get "/dashboard", PageController, :dashboard
+    get "/settings", PageController, :settings
   end
 end

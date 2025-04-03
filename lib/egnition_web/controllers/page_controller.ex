@@ -12,4 +12,16 @@ defmodule EgnitionWeb.PageController do
     |> put_layout(false)
     |> render_inertia("profile/user.tsx")
   end
+
+  def dashboard(conn, _params) do
+    conn
+    |> put_layout(false)
+    |> render_inertia("dashboard/page.tsx")
+  end
+
+  def settings(conn, _params) do
+    conn
+    |> put_layout(false)
+    |> render_inertia("settings/page.tsx")
+  end
 end

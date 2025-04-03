@@ -99,7 +99,7 @@ function UserDropdown() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger className="p-1 border-border border-solid border-1 rounded-full bg-secondary">
         <IconUserHexagon size={26} />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
