@@ -18,7 +18,11 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { IconLogout, IconUserCircle } from "@tabler/icons-react";
+import {
+  IconLogout,
+  IconUserCircle,
+  IconUserHexagon,
+} from "@tabler/icons-react";
 import { CurrentUser } from "@/types";
 
 export function Header() {
@@ -95,13 +99,8 @@ function UserDropdown() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="outline"
-          className="h-10 w-10 rounded-full bg-secondary p-2"
-        >
-          <IconUserCircle size={24} />
-        </Button>
+      <DropdownMenuTrigger>
+        <IconUserHexagon size={26} />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         <DropdownMenuLabel>{user?.name}</DropdownMenuLabel>

@@ -15,6 +15,10 @@ defmodule EgnitionWeb.Router do
     plug Inertia.Plug
   end
 
+  pipeline :redirect_if_user_is_authenticated do
+    plug EgnitionWeb.Plugs.RedirectIfUserIsAuthenticated
+  end
+
   pipeline :ensure_authenticated do
     plug EgnitionWeb.Plugs.EnsureAuthenticated
   end
@@ -63,5 +67,4 @@ defmodule EgnitionWeb.Router do
     get "/me", AuthController, :fetch_current_user
     delete "/logout", AuthController, :logout
   end
-
 end
