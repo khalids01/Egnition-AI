@@ -44,7 +44,7 @@ export const Logo = ({
         {showText && (
           <h2
             className={cn(
-              "font-bold text-2xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-300",
+              "font-bold text-2xl tracking-tight logo-text",
               classNames.text
             )}
           >

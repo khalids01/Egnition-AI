@@ -4,6 +4,7 @@ export const endpoints = {
     register: "/register",
     home: "/",
     logout: "/logout",
+    dashboard: "/dashboard"
   },
   api: {
     login: "/login",

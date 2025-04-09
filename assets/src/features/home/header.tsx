@@ -104,29 +104,34 @@ function UserDropdown() {
         <DropdownMenuLabel>{user?.name}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem asChild>
-            <Link href="/dashboard" prefetch={false}>
-              Dashboard
-              <DropdownMenuShortcut>
-                <IconLayoutDashboard size={22} />
-              </DropdownMenuShortcut>
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            Profile
-            <DropdownMenuShortcut>
-              <IconUser size={22} />
-            </DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            Settings
-            <DropdownMenuShortcut>
-              <IconSettings size={22} />
-            </DropdownMenuShortcut>
-          </DropdownMenuItem>
+          {[
+            {
+              label: "Dashboard",
+              href: "/dashboard",
+              icon: <IconLayoutDashboard size={22} />,
+            },
+            {
+              label: "Profile",
+              href: "#",
+              icon: <IconUser size={22} />,
+            },
+            {
+              label: "Settings",
+              href: "#",
+              icon: <IconSettings size={22} />,
+            },
+          ].map((item, index) => (
+            <DropdownMenuItem asChild key={index} className="py-2">
+              <Link href={item.href} prefetch={false}>
+                {item.icon}
+                <span>{item.label}</span>
+              </Link>
+            </DropdownMenuItem>
+          ))}
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem
+          className="py-2"
           onClick={() => {
             logout(endpoints.api.logout);
           }}

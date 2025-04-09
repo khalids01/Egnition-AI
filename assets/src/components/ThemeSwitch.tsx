@@ -6,10 +6,11 @@ import { Moon, Sun } from "lucide-react";
 
 interface Props {
   type?: "switch" | "select";
+  size?: "default" | "sm" | "lg";
 }
 
 export function ThemeSwitch(props?: Props) {
-  const { type = "switch" } = props || {};
+  const { type = "switch", size = "default" } = props || {};
   const { theme, setTheme } = useTheme();
   const [rendered, setRendered] = useState(false);
 
@@ -36,7 +37,12 @@ export function ThemeSwitch(props?: Props) {
         <button
           onClick={toggleTheme}
           className={cn(
-            "relative h-7 w-14 rounded-full p-1 transition-colors duration-200",
+            "relative rounded-full p-1 transition-colors duration-200",
+            size === "lg"
+              ? "h-10 w-20"
+              : size === "sm"
+              ? "h-5.5 w-10"
+              : "h-7 w-14",
             theme === "dark" ? "bg-slate-700" : "bg-gray-300"
           )}
           aria-label={
@@ -45,14 +51,36 @@ export function ThemeSwitch(props?: Props) {
         >
           <span
             className={cn(
-              "flex h-5 w-[20px] items-center justify-center rounded-full bg-white shadow-sm transition-transform duration-200",
-              theme === "dark" ? "translate-x-7" : "translate-x-0"
+              "flex items-center justify-center rounded-full bg-white shadow-sm transition-transform duration-200",
+              size === "lg" ? "h-6 w-6" : size === "sm" ? "h-4.5 w-4.5" : "h-5 w-5",
+              theme === "dark" && size === "lg"
+                ? "translate-x-10"
+                : theme === "dark" && size === "sm"
+                ? "translate-x-4"
+                : theme === "dark" && size === "default"
+                ? "translate-x-7"
+                : "translate-x-0",
+              size === "sm" ? "-translate-y-0.5" : ""
             )}
           >
             {theme === "dark" ? (
-              <Moon className="h-4 w-4 text-slate-700" />
+              <Moon
+                className={cn(
+                  " text-slate-700",
+                  size === "lg"
+                    ? "h-6 w-6"
+                    : size === "sm"
+                    ? "h-4 w-4"
+                    : "h-5 w-5"
+                )}
+              />
             ) : (
-              <Sun className="h-4 w-4 text-amber-500" />
+              <Sun
+                className={cn(
+                  "text-yellow-400",
+                  size === "lg" ? "h-6 w-6" : "h-5 w-5"
+                )}
+              />
             )}
           </span>
         </button>
