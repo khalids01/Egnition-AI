@@ -39,3 +39,8 @@ npm-debug.log
 
 .tsbuildinfo
 assets/.tsbuildinfo
+
+.env
+*.env
+
+*.env.*
