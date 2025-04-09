@@ -10,6 +10,7 @@ import {
 } from "@tabler/icons-react";
 import { motion } from "motion/react";
 import { Hydrate } from "@/components/hydrate";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 export function Services() {
   return (
@@ -206,13 +207,9 @@ const SkeletonFour = () => {
         variants={first}
         className="h-full w-1/3 rounded-2xl bg-white p-4 dark:bg-black dark:border-white/[0.1] border border-neutral-200 flex flex-col items-center justify-center"
       >
-        <img
-          src="/images/profile.avatar"
-          alt="avatar"
-          height="100"
-          width="100"
-          className="rounded-full h-10 w-10"
-        />
+        <Avatar>
+          <AvatarFallback>AK</AvatarFallback>
+        </Avatar>
         <p className="sm:text-sm text-xs text-center font-semibold text-neutral-500 mt-4">
           Just code in Vanilla Javascript
         </p>
@@ -221,13 +218,10 @@ const SkeletonFour = () => {
         </p>
       </motion.div>
       <motion.div className="h-full relative z-20 w-1/3 rounded-2xl bg-white p-4 dark:bg-black dark:border-white/[0.1] border border-neutral-200 flex flex-col items-center justify-center">
-        <img
-          src="/images/profile.avatar"
-          alt="avatar"
-          height="100"
-          width="100"
-          className="rounded-full h-10 w-10"
-        />
+        <Avatar>
+          <AvatarFallback>MK</AvatarFallback>
+        </Avatar>
+
         <p className="sm:text-sm text-xs text-center font-semibold text-neutral-500 mt-4">
           Tailwind CSS is cool, you know
         </p>
@@ -239,16 +233,11 @@ const SkeletonFour = () => {
         variants={second}
         className="h-full w-1/3 rounded-2xl bg-white p-4 dark:bg-black dark:border-white/[0.1] border border-neutral-200 flex flex-col items-center justify-center"
       >
-        <img
-          src="/images/profile.avatar"
-          alt="avatar"
-          height="100"
-          width="100"
-          className="rounded-full h-10 w-10"
-        />
-        <p className="sm:text-sm text-xs text-center font-semibold text-neutral-500 mt-4">
-          I love angular, RSC, and Redux.
-        </p>
+        I love angular, RSC, and Redux.
+        <Avatar>
+          <AvatarFallback>CK</AvatarFallback>
+        </Avatar>
+        <p className="sm:text-sm text-xs text-center font-semibold text-neutral-500 mt-4"></p>
         <p className="border border-orange-500 bg-orange-100 dark:bg-orange-900/20 text-orange-600 text-xs rounded-full px-2 py-0.5 mt-4">
           Helpless
         </p>
@@ -292,13 +281,10 @@ const SkeletonFive = () => {
         variants={variants}
         className="flex flex-row rounded-2xl border border-neutral-100 dark:border-white/[0.2] p-2  items-start space-x-2 bg-white dark:bg-black"
       >
-        <img
-          src="/avatar.png"
-          alt="avatar"
-          height="100"
-          width="100"
-          className="rounded-full h-10 w-10"
-        />
+        <Avatar>
+          <AvatarFallback>A</AvatarFallback>
+        </Avatar>
+
         <p className="text-xs text-neutral-500">
           There are a lot of cool framerworks out there like React, Angular,
           Vue, Svelte that can make your life ....

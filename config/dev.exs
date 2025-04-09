@@ -2,10 +2,10 @@ import Config
 
 # Configure your database
 config :egnition, Egnition.Repo,
-  username: "root",
-  password: "admin",
-  hostname: "localhost",
-  database: "egnition",
+  username: System.get_env("USER") || "root",
+  password: System.get_env("PASSWORD") || "admin",
+  hostname: System.get_env("HOST") || "localhost",
+  database: System.get_env("DATABASE") || "egnition",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10

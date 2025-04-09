@@ -10,20 +10,19 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuPortal,
   DropdownMenuSeparator,
   DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
+  IconLayoutDashboard,
   IconLogout,
-  IconUserCircle,
+  IconSettings,
+  IconUser,
   IconUserHexagon,
 } from "@tabler/icons-react";
 import { CurrentUser } from "@/types";
+import { Logo } from "@/components/logo";
 
 export function Header() {
   const { props } = usePage();
@@ -33,8 +32,7 @@ export function Header() {
     <header className="text-primary bg-background border-b border-muted">
       <div className="container mx-auto flex items-center justify-between h-16 px-4 md:px-6">
         <Link href="#" className="flex items-center gap-2" prefetch={false}>
-          <MountainIcon className="w-6 h-6" />
-          <span className="text-lg font-bold">Egnition AI</span>
+          <Logo />
         </Link>
         <nav className="hidden md:flex items-center gap-6">
           <Link
@@ -99,17 +97,32 @@ function UserDropdown() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="p-1 border-border border-solid border-1 rounded-full bg-secondary">
+      <DropdownMenuTrigger className="p-1 cursor-pointer border-border border-solid border-1 rounded-full bg-secondary transition-all duration-200 ">
         <IconUserHexagon size={26} />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         <DropdownMenuLabel>{user?.name}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>Profile</DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Link href="/dashboard" prefetch={false}>
+              Dashboard
+              <DropdownMenuShortcut>
+                <IconLayoutDashboard size={22} />
+              </DropdownMenuShortcut>
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            Profile
+            <DropdownMenuShortcut>
+              <IconUser size={22} />
+            </DropdownMenuShortcut>
+          </DropdownMenuItem>
           <DropdownMenuItem>
             Settings
-            <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+            <DropdownMenuShortcut>
+              <IconSettings size={22} />
+            </DropdownMenuShortcut>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
