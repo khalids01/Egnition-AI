@@ -42,6 +42,8 @@ config :esbuild,
       --outdir=../priv/static/assets
       --external:/fonts/*
       --external:/images/*
+      --external:./node_modules/*
+      --metafile=app.meta.json
         ),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
@@ -53,6 +55,8 @@ config :esbuild,
       --platform=node
       --outdir=../priv
       --format=cjs
+      --external:./node_modules/*
+      --metafile=ssr.meta.json
       ),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}

@@ -44,3 +44,6 @@ assets/.tsbuildinfo
 *.env
 
 *.env.*
+
+ssr.meta.json
+app.meta.json
