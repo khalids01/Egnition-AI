@@ -17,7 +17,7 @@ defmodule Egnition.Application do
 
       # Start the SSR process pool
       # must specify a `path` option to locate the directory where the `ssr.js` file lives.
-      {Inertia.SSR, path: Path.join([Application.app_dir(:egnition), "priv"])},
+      # {Inertia.SSR, path: Path.join([Application.app_dir(:egnition), "priv"])},
 
       # Start a worker by calling: Egnition.Worker.start_link(arg)
       # {Egnition.Worker, arg},

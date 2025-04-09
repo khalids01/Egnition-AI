@@ -47,20 +47,21 @@ config :esbuild,
         ),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
-  ],
-  ssr: [
-    args: ~w(
-      src/ssr.tsx
-      --bundle
-      --platform=node
-      --outdir=../priv
-      --format=cjs
-      --external:./node_modules/*
-      --metafile=ssr.meta.json
-      ),
-    cd: Path.expand("../assets", __DIR__),
-    env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
+
+# ssr: [
+#   args: ~w(
+#     src/ssr.tsx
+#     --bundle
+#     --platform=node
+#     --outdir=../priv
+#     --metafile=ssr.meta.json
+#     --external:./node_modules/*
+#     ),
+#     # --external:phoenix --external:phoenix_html --external:phoenix_live_view
+#   cd: Path.expand("../assets", __DIR__),
+#   env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
+# ]
 
 # Configure tailwind (the version is required)
 config :tailwind,
@@ -90,7 +91,7 @@ config :inertia,
   default_version: "1",
   camelize_props: false,
   history: [encrypt: false],
-  ssr: true,
+  ssr: false,
   raise_on_ssr_failure: config_env() != :prod
 
 import_config "#{config_env()}.exs"

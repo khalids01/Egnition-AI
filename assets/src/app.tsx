@@ -1,8 +1,11 @@
-import "phoenix_html";
+// import "phoenix_html";
 
 import React from "react";
 import { createInertiaApp } from "@inertiajs/react";
-import { hydrateRoot } from "react-dom/client";
+import {
+  createRoot,
+  //  hydrateRoot
+} from "react-dom/client";
 import axios from "axios";
 import { Toaster } from "./components/ui/toast";
 
@@ -14,12 +17,14 @@ createInertiaApp({
     return pages;
   },
   setup({ el, App, props }) {
-    hydrateRoot(
+    createRoot(
       el,
-      <>
-        <App {...props} />
-        <Toaster />
-      </>
+      (
+        <>
+          <App {...props} />
+          <Toaster />
+        </>
+      ) as any
     );
   },
 });

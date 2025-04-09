@@ -2,10 +2,14 @@ import Config
 
 # Configure your database
 config :egnition, Egnition.Repo,
-  username: System.get_env("USER") || "root",
-  password: System.get_env("PASSWORD") || "admin",
-  hostname: System.get_env("HOST") || "localhost",
-  database: System.get_env("DATABASE") || "egnition",
+  # username: System.get_env("USER") || "root",
+  # password: System.get_env("PASSWORD") || "admin",
+  # hostname: System.get_env("HOST") || "localhost",
+  # database: System.get_env("DATABASE") || "egnition",
+  username: "root",
+  password: "admin",
+  hostname: "localhost",
+  database: "egnition",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -26,7 +30,7 @@ config :egnition, EgnitionWeb.Endpoint,
   secret_key_base: "Z1ggTCqsIbFxEMuqyTblmWdtnc9od2gRcAeptWtq6VziIoWanVHBVvmbI/Fl5y/H",
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:egnition, ~w(--sourcemap=inline --watch)]},
-    ssr: {Esbuild, :install_and_run, [:ssr, ~w(--sourcemap=inline --watch)]},
+    # ssr: {Esbuild, :install_and_run, [:ssr, ~w( --watch)]},
     tailwind: {Tailwind, :install_and_run, [:egnition, ~w(--watch --poll=2000)]}
     # node: ["node_modules/esbuild/bin/esbuild", "--watch", cd: Path.expand("../assets", __DIR__)]
   ]

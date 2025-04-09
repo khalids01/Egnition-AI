@@ -77,11 +77,15 @@ defmodule Egnition.MixProject do
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
       # "assets.build": ["tailwind egnition", "esbuild egnition"],
-      "assets.build": ["tailwind egnition", "esbuild egnition", "esbuild ssr"],
+      "assets.build": [
+        "tailwind egnition",
+        "esbuild egnition"
+        # "esbuild ssr"
+      ],
       "assets.deploy": [
         "tailwind egnition --minify",
         "esbuild egnition --minify",
-        "esbuild ssr",
+        # "esbuild ssr",
         "phx.digest"
       ]
     ]
