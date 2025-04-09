@@ -29,7 +29,7 @@ config :egnition, EgnitionWeb.Endpoint,
   debug_errors: true,
   secret_key_base: "Z1ggTCqsIbFxEMuqyTblmWdtnc9od2gRcAeptWtq6VziIoWanVHBVvmbI/Fl5y/H",
   watchers: [
-    esbuild: {Esbuild, :install_and_run, [:egnition, ~w(--sourcemap=inline --watch)]},
+    esbuild: {Esbuild, :install_and_run, [:egnition, ~w( --watch)]},
     # ssr: {Esbuild, :install_and_run, [:ssr, ~w( --watch)]},
     tailwind: {Tailwind, :install_and_run, [:egnition, ~w(--watch --poll=2000)]}
     # node: ["node_modules/esbuild/bin/esbuild", "--watch", cd: Path.expand("../assets", __DIR__)]

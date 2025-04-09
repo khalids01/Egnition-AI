@@ -17,14 +17,11 @@ createInertiaApp({
     return pages;
   },
   setup({ el, App, props }) {
-    createRoot(
-      el,
-      (
-        <>
-          <App {...props} />
-          <Toaster />
-        </>
-      ) as any
+    createRoot(el).render(
+      <>
+        <App {...props} />
+        <Toaster />
+      </>
     );
   },
 });
